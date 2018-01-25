@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title></title>
+    
+</head>
+<body>
+
+        <p>Current Gold: {{gold}}</p>
+
+        <form action="/process" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="place" value="farm">
+            <input type="submit" value="Enter the Farm">
+        </form>
+        <form action="/process" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="place" value="cave">
+            <input type="submit" value="Enter the cave">
+        </form>
+        <form action="/process" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="place" value="house">
+            <input type="submit" value="Enter the house">
+        </form>
+        <form action="/process" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="place" value="casino">
+            <input type="submit" value="Enter the casino">
+        </form>
+        <form action="/reset" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="place" value="reset">
+            <input type="submit" value="Reset your gold">
+        </form>
+        <h4>Activities:</h4>
+        <div class="message-log">
+            {% for log in request.session.logs reversed %}
+                <p class='{{ log.class }}'>{{ log.message }}</p>
+            {% endfor %}
+        </div>   
+</body>
+</html>
